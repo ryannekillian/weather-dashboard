@@ -101,6 +101,10 @@ $(document).ready(function () {
   }
 });
 
+
+
+
+
 var temp = results[0].main.temp
             var humidity = results[0].main.humidity
             var currentDate = current.dt_txt.split(" ")[0]
@@ -113,11 +117,11 @@ var temp = results[0].main.temp
             
             var html = `
             <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src= ${image} class="card-img-top" alt="weather icon">
             <div class="card-body">
             <h5 class="card-title">${currentDate}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p class="card-text">${temp} ${humidity}</p>
+            
             </div>
             </div>
             `
