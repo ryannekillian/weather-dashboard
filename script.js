@@ -8,8 +8,9 @@ $(document).ready(function() {
             return 
     }
         var inputCity = $("#search-bar").val();
-
-        var cities = (localStorage.getItem("listOfCities"))
+         
+            var cities = (localStorage.getItem("listOfCities"))
+        
         if (!cities) {
             cities = []
         }
@@ -27,20 +28,21 @@ $(document).ready(function() {
     });
 
     function renderButtons() {
-        var cities = (localStorage.getItem("listOfCities"))
-        
-        if (cities) {
-            cities = cities.split(",")
-            cities.forEach(function (inputCity) {
-                
-                var newRow = $("<button>").addClass("new-added-row cityButton").text(inputCity).click(function(event){
-                    currentWeatherData($(event.target).text());
-                    weekWeather($(event.target).text())
+            var cities = (localStorage.getItem("listOfCities"))
+            
+            if (cities) {
+                cities = cities.split(",")
+                cities.forEach(function (inputCity) {
+                    
+                    var newRow = $("<button>").addClass("new-added-row cityButton").text(inputCity).click(function(event){
+                        currentWeatherData($(event.target).text());
+                        weekWeather($(event.target).text())
+                    });
+                    $("#previous-searches").append(newRow);
                 });
-                $("#previous-searches").append(newRow);
-            });
-        }
-      
+            }
+            
+        
 
     }
 
