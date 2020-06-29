@@ -5,4 +5,4 @@ This website allows user to look up the weather in a desired city. It will show 
 
 [link to my website](https://ryannekillian.github.io/weather-dashboard/)
 
-![this is a screenshot of my website](./assets/images/screenshot.png)
+![this is a screenshot of my website](./screenshot.png)
