@@ -2,20 +2,21 @@ $(document).ready(function() {
     const listOfCities = [];
     renderButtons();
     
-
+    // if no city is entered, return an error message
     $("#test-button").on("click", () => {
         if ($("#search-bar").val() === "") {
             alert("Enter City");
             return 
     }
         var inputCity = $("#search-bar").val();
-         
+         //getting to local storage
             var cities = (localStorage.getItem("listOfCities"))
-        
+        //if not true set to an array
         if (!cities) {
             cities = []
         }
         else {
+            //split the cities so local storage can read
             cities = cities.split(",")
         }
             if (cities.indexOf(inputCity) < 0 ) {
@@ -25,19 +26,18 @@ $(document).ready(function() {
                 
             currentWeatherData(inputCity);
             weekWeather(inputCity);
+            //clearing the search bar
             $("#search-bar").val("");
-            // renderButtons();
+            
         });
         
-        function renderButtons() {
-            
-            
+        function renderButtons() {            
             var cities = (localStorage.getItem("listOfCities"))
             
             if (cities) {
                 cities = cities.split(",")
                 cities.forEach(function (inputCity) {
-                    
+                    //adding cities to col on left to access without retyping it in
                     var newRow = $("<button>").addClass("new-added-row cityButton").text(inputCity).click(function(event){
                         currentWeatherData($(event.target).text());
                         weekWeather($(event.target).text())
@@ -50,15 +50,15 @@ $(document).ready(function() {
 
     function currentWeatherData(inputCity) {
         fetch(
-         "https://api.openweathermap.org/data/2.5/weather?q=" + inputCity + "&appid=58a08c2908ce32624719339921d6bfb5&units=imperial"   
-        )
-        .then(function (response) {
-            return response.json();
-        })  
-        .then(function (data) {
-                //Fetch UV Index info
+            "https://api.openweathermap.org/data/2.5/weather?q=" + inputCity + "&appid=58a08c2908ce32624719339921d6bfb5&units=imperial"   
+            )
+            .then(function (response) {
+                return response.json();
+            })  
+            .then(function (data) {
                 var coordLat = data.coord.lat;
                 var coordLon = data.coord.lon;
+            //Fetch UV Index info
             fetch(
                 `http://api.openweathermap.org/data/2.5/uvi?appid=58a08c2908ce32624719339921d6bfb5&lat=${coordLat}&lon=${coordLon}`
             )
@@ -96,6 +96,7 @@ $(document).ready(function() {
     }
 
     function weekWeather(inputCity) {
+        //fetch 5 day 3 hour weather api
         fetch (
             "https://api.openweathermap.org/data/2.5/forecast?q=" + inputCity + 
             "&appid=58a08c2908ce32624719339921d6bfb5&units=imperial"
@@ -122,9 +123,7 @@ $(document).ready(function() {
                 }
             }
             for (i = 0; i < results.length; i++) {
-                
-
-                
+                //info put into cards                 
                 var temp = results[i].main.temp
                 var humidity = results[i].main.humidity
                 var currentDate = results[i].dt_txt.split(" ")[0]
