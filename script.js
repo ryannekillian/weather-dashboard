@@ -1,6 +1,7 @@
 $(document).ready(function() {
     const listOfCities = [];
     renderButtons();
+
     $("#test-button").on("click", () => {
         if ($("#search-bar").val() === "") {
             alert("Enter City");
@@ -20,8 +21,8 @@ $(document).ready(function() {
         localStorage.setItem("listOfCities", cities)
         currentWeatherData(inputCity);
         weekWeather(inputCity);
-   
         $("#search-bar").val("");
+        
 
     });
 
@@ -39,6 +40,7 @@ $(document).ready(function() {
                 $("#previous-searches").append(newRow);
             });
         }
+      
 
     }
 
