@@ -26,6 +26,7 @@ $(document).ready(function() {
                 
             currentWeatherData(inputCity);
             weekWeather(inputCity);
+            //clearing previous searches to not render it twice
             $("#previous-searches").empty()
 
             renderButtons();
