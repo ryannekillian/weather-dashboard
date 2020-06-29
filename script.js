@@ -1,6 +1,7 @@
 $(document).ready(function() {
     const listOfCities = [];
     renderButtons();
+    
 
     $("#test-button").on("click", () => {
         if ($("#search-bar").val() === "") {
@@ -16,18 +17,21 @@ $(document).ready(function() {
         }
         else {
             cities = cities.split(",")
+        }
+            if (cities.indexOf(inputCity) < 0 ) {
+                cities.push(inputCity);
+                localStorage.setItem("listOfCities", cities)
             }
-        cities.push(inputCity);
+                
+            currentWeatherData(inputCity);
+            weekWeather(inputCity);
+            $("#search-bar").val("");
+            // renderButtons();
+        });
         
-        localStorage.setItem("listOfCities", cities)
-        currentWeatherData(inputCity);
-        weekWeather(inputCity);
-        $("#search-bar").val("");
-        
-
-    });
-
-    function renderButtons() {
+        function renderButtons() {
+            
+            
             var cities = (localStorage.getItem("listOfCities"))
             
             if (cities) {
@@ -42,9 +46,7 @@ $(document).ready(function() {
                 });
             }
             
-        
-
-    }
+        }
 
     function currentWeatherData(inputCity) {
         fetch(
