@@ -21,11 +21,14 @@ $(document).ready(function() {
         }
             if (cities.indexOf(inputCity) < 0 ) {
                 cities.push(inputCity);
-                localStorage.setItem("listOfCities", cities)
             }
+            localStorage.setItem("listOfCities", cities)
                 
             currentWeatherData(inputCity);
             weekWeather(inputCity);
+            $("#previous-searches").empty()
+
+            renderButtons();
             //clearing the search bar
             $("#search-bar").val("");
             
