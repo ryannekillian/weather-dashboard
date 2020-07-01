@@ -64,7 +64,7 @@ $(document).ready(function() {
                 var coordLon = data.coord.lon;
             //Fetch UV Index info
             fetch(
-                `http://api.openweathermap.org/data/2.5/uvi?appid=58a08c2908ce32624719339921d6bfb5&lat=${coordLat}&lon=${coordLon}`
+                `https://api.openweathermap.org/data/2.5/uvi?appid=58a08c2908ce32624719339921d6bfb5&lat=${coordLat}&lon=${coordLon}`
             )
             .then(function (response) {
                 return response.json();
